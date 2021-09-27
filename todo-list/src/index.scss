@@ -22,7 +22,7 @@
   display: flex;
   width: 960px;
   max-width: 90%;
-  height: 600px;
+  height: 660px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -33,7 +33,7 @@
 
   &__sidebar {
     background-color: #F4F6F8;
-    width: 200px;
+    width: 280px;
     height: 100%;
     padding: 60px 20px;
     border-right: 1px solid #F1F1F1;
@@ -43,5 +43,35 @@
 
   &__tasks {
     padding: 60px 70px 60px 60px;
+  }
+
+  .input_field {
+    background-color: #FFFFFF;
+    border: 1px solid #EFEFEF;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 8px 12px;
+  }
+
+  .btn {
+    border: 0;
+    outline: 0;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  .btn__green {
+    background-color: #4DD599;
+    color: #fff;
+    transition: all .3s;
+
+    &:hover {
+      background-color: darken(#4DD599, 15%);
+    }
+
+    &:active {
+      background-color: darken(#4DD599, 25%);
+    }
   }
 }

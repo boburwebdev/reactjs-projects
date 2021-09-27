@@ -20,6 +20,15 @@
         }
     }
 
+    .list__item_add {
+        color: #767676;
+        transition: all .3s;
+
+        &:hover {
+            color: #222;
+        }
+    }
+
     .list__item_icon {
         margin-right: 6px;
         opacity: .6;
@@ -28,7 +37,7 @@
     .list__item_sub {
         position: relative;
         padding: 10px 35px 10px 35px;
-        &::after {
+        &::before {
             content: '';
             width: 10px;
             height: 10px;
@@ -41,31 +50,31 @@
     }
 
     .list__item_sub.green {
-        &::after {
+        &::before {
             background-color: #42B883;
         }
     }
 
     .list__item_sub.blue {
-        &::after {
+        &::before {
             background-color: #64C4ED;
         }
     }
 
     .list__item_sub.pink {
-        &::after {
+        &::before {
             background-color: #FFBBCC;
         }
     }
 
     .list__item_sub.lightgreen {
-        &::after {
+        &::before {
             background-color: #B6E6BD;
         }
     }
 
     .list__item_sub.gray {
-        &::after {
+        &::before {
             background-color: #C9D1D3;
         }
     }
