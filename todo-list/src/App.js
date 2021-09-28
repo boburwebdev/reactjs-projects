@@ -3,8 +3,27 @@ import listIcon from './assets/img/list.svg';
 import List from './components/List/List';
 import AddNewCategory from './components/AddNewCategory/AddNewCategory';
 import DB from './assets/db.json';
+import { useState } from 'react';
 
 function App() {
+  const newList = DB.lists.map(list => {
+    const listColor = DB.colors.find(c => c.id === list.colorId).name;
+    return { ...list, color: listColor}
+  });
+
+  const [lists, setLists] = useState(newList);
+
+  const handleAddCategory = newCategory => {
+    const newList = [...lists, newCategory];
+    console.log(newCategory);
+    setLists(newList);
+  }
+
+  const handleRemove = id => {
+    const newLists = lists.filter(list => list.id !== id);
+    setLists(newLists);
+  }
+
   return (
     <main className="todo">
       <aside className="todo__sidebar">
@@ -13,38 +32,17 @@ function App() {
             {
               className: 'list__item',
               icon: listIcon,
-              text: "Все Задачи",
+              name: "Все Задачи",
               isActive: true
             }
           ]} />
 
         <List 
-          items={[
-            {
-              color: 'green',
-              text: 'Покупки',
-            },
-            {
-              color: 'blue',
-              text: 'Фронтенд'
-            },
-            {
-              color: 'pink',
-              text: 'Фильмы и сериалы'
-            },
-            {
-              color: 'lightgreen',
-              text: 'Книги'
-            },
-            {
-              color: 'gray',
-              text: 'Личное'
-            }
-          ]} 
-          isRemovable
+          items={lists}
+          removeItem={handleRemove} 
         />
 
-        <AddNewCategory colors={DB.colors} />
+        <AddNewCategory colors={DB.colors} addCategory={handleAddCategory} />
       </aside>
       <section className="todo__tasks">
         Tasks
