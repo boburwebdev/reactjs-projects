@@ -4,6 +4,7 @@ import List from './components/List/List';
 import AddNewCategory from './components/AddNewCategory/AddNewCategory';
 import DB from './assets/db.json';
 import { useState } from 'react';
+import Tasks from './components/Tasks/Tasks';
 
 function App() {
   const newList = DB.lists.map(list => {
@@ -45,7 +46,7 @@ function App() {
         <AddNewCategory colors={DB.colors} addCategory={handleAddCategory} />
       </aside>
       <section className="todo__tasks">
-        Tasks
+        <Tasks title="Фронтенд" />
       </section>
     </main>
   );
