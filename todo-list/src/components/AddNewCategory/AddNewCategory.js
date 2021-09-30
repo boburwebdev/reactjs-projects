@@ -1,17 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import classNames from 'classnames';
+import uuid from 'uuid/dist/v4';
+import axios from 'axios';
+
 import plusIcon from '../../assets/img/add.svg';
 import closeIcon from '../../assets/img/close.svg';
 import List from '../List/List';
-import classNames from 'classnames';
-import uuid from 'uuid/dist/v4';
 
 import './AddNewCategory.scss';
 
 
 const AddNewCategory = ({ colors, addCategory }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const [selectedColor, setSelectedColor] = useState(colors[0].id);
+    const [selectedColor, setSelectedColor] = useState(1);
     const [inputValue, setInputValue] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        if(Array.isArray(colors)) {
+            setSelectedColor(colors[0].id);
+        }
+    }, [])
 
     const handleClickList = () => {
         setIsModalVisible(true);
@@ -26,12 +35,23 @@ const AddNewCategory = ({ colors, addCategory }) => {
     }
 
     const handleClickAddCategory = () => {
-        addCategory({
-            "id": uuid(),
-            "name": inputValue,
-            "color": colors.find(c => c.id === selectedColor).name
+        setIsLoading(true);
+
+        axios.post(`http://localhost:4004/lists`, {
+            name: inputValue,
+            colorId: selectedColor
+        }).then(({ data }) => {
+            
+            const color = colors.find(c => c.id === selectedColor).name;
+            const newListObj = {...data, color};
+            
+            addCategory(newListObj);
+            resetPopupData();
+        }).catch(err => {
+            console.log(err);
+        }).finally(() => {
+            setIsLoading(false);
         });
-        resetPopupData();
     }
 
     const resetPopupData = () => {
@@ -77,7 +97,7 @@ const AddNewCategory = ({ colors, addCategory }) => {
                         </div>
                         <button 
                             className="btn btn__green btn__add_category"
-                            onClick={handleClickAddCategory} >Добавить</button>
+                            onClick={handleClickAddCategory} >{isLoading ? `Добавление...` : `Добавить`}</button>
                     </div>
                 )
             }

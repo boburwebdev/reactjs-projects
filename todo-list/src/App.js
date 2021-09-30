@@ -1,18 +1,26 @@
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import listIcon from './assets/img/list.svg';
-import List from './components/List/List';
-import AddNewCategory from './components/AddNewCategory/AddNewCategory';
-import DB from './assets/db.json';
-import { useState } from 'react';
-import Tasks from './components/Tasks/Tasks';
+
+import { List, AddNewCategory, Tasks } from './components';
+import './App.css';
 
 function App() {
-  const newList = DB.lists.map(list => {
-    const listColor = DB.colors.find(c => c.id === list.colorId).name;
-    return { ...list, color: listColor}
-  });
+  const [lists, setLists] = useState(null);
+  const [colors, setColors] = useState(null);
 
-  const [lists, setLists] = useState(newList);
+  useEffect(() => {
+    axios.get(`http://localhost:4004/lists?_expand=color&_embed=tasks`)
+        .then(({ data }) => {
+          console.log(data);
+          setLists(data);
+        });
+      
+    axios.get(`http://localhost:4004/colors`)
+          .then(({ data }) => {
+            setColors(data);
+          })
+  }, [])
 
   const handleAddCategory = newCategory => {
     const newList = [...lists, newCategory];
@@ -38,12 +46,12 @@ function App() {
             }
           ]} />
 
-        <List 
+        {lists ? <List 
           items={lists}
           removeItem={handleRemove} 
-        />
+        /> : 'Загрузка...'}
 
-        <AddNewCategory colors={DB.colors} addCategory={handleAddCategory} />
+        <AddNewCategory colors={colors} addCategory={handleAddCategory} />
       </aside>
       <section className="todo__tasks">
         <Tasks title="Фронтенд" />
