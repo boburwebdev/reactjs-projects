@@ -21,6 +21,16 @@
             opacity: .25;
         }
 
+        .buttons {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+
+            .btn__save {
+                margin-right: 10px;
+            }
+        }
+
     }
 
     .tasks__list_item {
@@ -73,7 +83,11 @@
         }
     }
 
-    
+    .tasks__list_empty {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 30px;
+        color: #C9D1D3;
+    }
 }
     
 

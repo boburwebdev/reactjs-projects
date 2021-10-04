@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
-import uuid from 'uuid/dist/v4';
 import axios from 'axios';
 
 import plusIcon from '../../assets/img/add.svg';
@@ -20,7 +19,7 @@ const AddNewCategory = ({ colors, addCategory }) => {
         if(Array.isArray(colors)) {
             setSelectedColor(colors[0].id);
         }
-    }, [])
+    }, [colors]);
 
     const handleClickList = () => {
         setIsModalVisible(true);
@@ -63,7 +62,7 @@ const AddNewCategory = ({ colors, addCategory }) => {
     return (
         <div className="add_new_category">
             <List
-                onClick={handleClickList}
+                onClickList={handleClickList}
                 items={[
                     {
                         className: 'list__item list__item_add',

@@ -5,7 +5,7 @@ import removeIcon from '../../assets/img/remove.svg';
 import './List.scss';
 import axios from 'axios';
 
-const List = ({ items, onClick, removeItem }) => {
+const List = ({ items, onClickList, onClickListItem, removeItem, activeItem }) => {
     const handleRemoveItem = (id) => {
         axios.delete(`http://localhost:4004/lists/${id}`).then(data => {
             console.log(data);
@@ -14,7 +14,7 @@ const List = ({ items, onClick, removeItem }) => {
     }
 
     return (
-        <ul className="list" onClick={onClick}>
+        <ul className="list" onClick={onClickList}>
             {
                 items.map(item => {
                     return item.icon ? (
@@ -23,10 +23,13 @@ const List = ({ items, onClick, removeItem }) => {
                                 {item.name}
                             </li>
                         ) : (
-                            <li className={
-                                classNames(`list__item`, `list__item_sub`, item?.color?.name, {active: item.isActive})
-                            } key={uuid()}>
-                                {item.name}
+                            <li 
+                                className={
+                                    classNames(`list__item`, `list__item_sub`, item?.color?.name, {active: activeItem === item})
+                                } 
+                                key={uuid()}
+                                onClick={() => onClickListItem(item)}>
+                                {item.name} ({item?.tasks?.length})
                                 <img onClick={() => handleRemoveItem(item.id)} className="list__item_remove" src={removeIcon} alt="remove" />
                             </li>
                         )

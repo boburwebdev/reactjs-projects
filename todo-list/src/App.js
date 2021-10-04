@@ -8,11 +8,12 @@ import './App.css';
 function App() {
   const [lists, setLists] = useState(null);
   const [colors, setColors] = useState(null);
+  const [activeItem, setActiveItem] = useState(null);
+  const [tasksIndex, setTasksIndex] = useState(null);
 
   useEffect(() => {
     axios.get(`http://localhost:4004/lists?_expand=color&_embed=tasks`)
         .then(({ data }) => {
-          console.log(data);
           setLists(data);
         });
       
@@ -23,14 +24,36 @@ function App() {
   }, [])
 
   const handleAddCategory = newCategory => {
-    const newList = [...lists, newCategory];
-    console.log(newCategory);
-    setLists(newList);
+    axios.get(`http://localhost:4004/lists?_expand=color&_embed=tasks`)
+        .then(({ data }) => {
+          console.log(data);
+          
+          const newList = [...data, newCategory];
+          console.log(newCategory);
+          setLists(newList);
+        });
+
+        // const newList = [...lists, newCategory];
+        // console.log(newCategory);
+        // setLists(newList);
   }
 
   const handleRemove = id => {
     const newLists = lists.filter(list => list.id !== id);
     setLists(newLists);
+  }
+
+  const handleUpdateTitle = (id, newTitle) => {
+    const newLists = lists.map(list => {
+      return list.id === id ? { ...list, name: newTitle} : list
+    });
+
+    setLists(newLists);
+
+    axios.patch(`http://localhost:4004/lists/${id}`, { name: newTitle })
+          .then(data => {
+            console.log(data);
+          })
   }
 
   return (
@@ -42,19 +65,24 @@ function App() {
               className: 'list__item',
               icon: listIcon,
               name: "Все Задачи",
-              isActive: true
+              // isActive: true
             }
           ]} />
 
         {lists ? <List 
           items={lists}
-          removeItem={handleRemove} 
+          removeItem={handleRemove}
+          onClickListItem={(item) => {
+            setTasksIndex(lists.indexOf(item));
+            setActiveItem(item);
+          }}
+          activeItem={activeItem} 
         /> : 'Загрузка...'}
 
         <AddNewCategory colors={colors} addCategory={handleAddCategory} />
       </aside>
       <section className="todo__tasks">
-        <Tasks title="Фронтенд" />
+        {lists && lists[tasksIndex] && <Tasks taskItems={lists[tasksIndex]} updateTitle={handleUpdateTitle} />}
       </section>
     </main>
   );
