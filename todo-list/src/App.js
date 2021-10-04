@@ -21,21 +21,14 @@ function App() {
           .then(({ data }) => {
             setColors(data);
           })
-  }, [])
+  }, [lists?.length])
 
   const handleAddCategory = newCategory => {
     axios.get(`http://localhost:4004/lists?_expand=color&_embed=tasks`)
         .then(({ data }) => {
-          console.log(data);
-          
           const newList = [...data, newCategory];
-          console.log(newCategory);
           setLists(newList);
         });
-
-        // const newList = [...lists, newCategory];
-        // console.log(newCategory);
-        // setLists(newList);
   }
 
   const handleRemove = id => {
