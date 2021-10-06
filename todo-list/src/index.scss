@@ -1,0 +1,79 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  outline: none;
+  font-family: 'Roboto',
+  -apple-system,
+  system-ui,
+  'Oxygen',
+  'Ubuntu',
+  'Cantarell',
+  'Fira Sans',
+  'Droid Sans',
+  'Helvetica Neue',
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.todo {
+  display: flex;
+  width: 960px;
+  max-width: 90%;
+  height: 660px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, .15);
+  border: 1px solid #F1F1F1;
+  border-radius: 10px;
+
+  &__sidebar {
+    background-color: #F4F6F8;
+    width: 280px;
+    height: 100%;
+    padding: 60px 20px;
+    border-right: 1px solid #F1F1F1;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+
+  &__tasks {
+    flex: 1;
+    padding: 60px 70px 60px 60px;
+    overflow-y: auto;
+  }
+
+  .input_field {
+    background-color: #FFFFFF;
+    border: 1px solid #EFEFEF;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding: 8px 12px;
+  }
+
+  .btn {
+    border: 0;
+    outline: 0;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  .btn__green {
+    background-color: #4DD599;
+    color: #fff;
+    transition: all .3s;
+
+    &:hover {
+      background-color: darken(#4DD599, 15%);
+    }
+
+    &:active {
+      background-color: darken(#4DD599, 25%);
+    }
+  }
+}
