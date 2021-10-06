@@ -21,7 +21,7 @@ function App() {
           .then(({ data }) => {
             setColors(data);
           })
-  }, [lists?.length])
+  }, [ lists?.length ])
 
   const handleAddCategory = newCategory => {
     axios.get(`http://localhost:4004/lists?_expand=color&_embed=tasks`)
@@ -29,11 +29,6 @@ function App() {
           const newList = [...data, newCategory];
           setLists(newList);
         });
-  }
-
-  const handleRemove = id => {
-    const newLists = lists.filter(list => list.id !== id);
-    setLists(newLists);
   }
 
   const handleUpdateTitle = (id, newTitle) => {
@@ -47,6 +42,17 @@ function App() {
           .then(data => {
             console.log(data);
           })
+          .catch(() => alert(`Не удалось обновить название списка`));
+  }
+
+  const handleRemove = id => {
+    const newLists = lists.filter(list => list.id !== id);
+    setLists(newLists);
+  }
+
+  const handleAddNewTask = obj => {
+    const newLists = [...lists, obj];
+    setLists(newLists);
   }
 
   return (
@@ -75,7 +81,14 @@ function App() {
         <AddNewCategory colors={colors} addCategory={handleAddCategory} />
       </aside>
       <section className="todo__tasks">
-        {lists && lists[tasksIndex] && <Tasks taskItems={lists[tasksIndex]} updateTitle={handleUpdateTitle} />}
+        {
+          lists && 
+          lists[tasksIndex] && 
+          <Tasks
+              addNewTask={handleAddNewTask} 
+              taskItems={lists[tasksIndex]} 
+              updateTitle={handleUpdateTitle} />
+        }
       </section>
     </main>
   );

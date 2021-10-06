@@ -17,10 +17,10 @@ const List = ({ items, onClickList, onClickListItem, removeItem, activeItem }) =
         <ul className="list" onClick={onClickList}>
             {
                 items.map(item => {
-                    return item.icon ? (
+                    return item?.icon ? (
                             <li className={classNames(item.className, {active: item.isActive})} key={uuid()}>
                                 <img className="list__item_icon" src={item.icon} alt={item.name} />
-                                {item.name}
+                                {item?.name}
                             </li>
                         ) : (
                             <li 
@@ -29,7 +29,7 @@ const List = ({ items, onClickList, onClickListItem, removeItem, activeItem }) =
                                 } 
                                 key={uuid()}
                                 onClick={() => onClickListItem(item)}>
-                                {item.name} ({item?.tasks?.length})
+                                {item?.name} ({item?.tasks?.length})
                                 <img onClick={() => handleRemoveItem(item.id)} className="list__item_remove" src={removeIcon} alt="remove" />
                             </li>
                         )
