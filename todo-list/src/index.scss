@@ -44,6 +44,7 @@
   &__tasks {
     flex: 1;
     padding: 60px 70px 60px 60px;
+    overflow-y: auto;
   }
 
   .input_field {

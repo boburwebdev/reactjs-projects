@@ -3,9 +3,10 @@ import iconEdit from '../../assets/img/edit.svg';
 import AddNewTask from './AddNewTask/AddNewTask';
 import './Tasks.scss';
 
-const Tasks = ({ taskItems, addNewTask, updateTitle }) => {
+const Tasks = (props) => {
 
-    const { id, name, tasks } = taskItems;
+    const { taskItems, addNewTask, updateTitle } = props;
+    const { id, name, tasks, color } = taskItems;
     const [ titleText, setTitleText ] = useState(name);
     const [ titleBeingEdited, setTitleBeingEdited ] = useState(false);
 
@@ -33,7 +34,7 @@ const Tasks = ({ taskItems, addNewTask, updateTitle }) => {
     
     return (
         <div className="tasks">
-            <h2 className="tasks__title">
+            <h2 className="tasks__title" style={{color: `${color.hex}`}}>
                 {
                     titleBeingEdited ? (
                         <>
