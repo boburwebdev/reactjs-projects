@@ -1,11 +1,11 @@
-import AirBnBExperiences from './AirBnBExperiences/AirBnBExperiences';
+import TravelJournal from './TravelJournal/TravelJournal';
 
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <AirBnBExperiences />
+      <TravelJournal />
     </div>
   );
 }
