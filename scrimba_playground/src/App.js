@@ -1,11 +1,11 @@
-import TravelJournal from './TravelJournal/TravelJournal';
+import ThingsArray from './ThingsArray/ThingsArray';
 
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <TravelJournal />
+      <ThingsArray />
     </div>
   );
 }

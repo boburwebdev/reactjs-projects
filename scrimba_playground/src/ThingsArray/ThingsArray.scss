@@ -1,0 +1,22 @@
+.things-array {
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .btn {
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 19px;
+    padding: 12px 18px;
+    margin: 10px;
+    cursor: pointer;
+  }
+
+  &__text {
+    margin: 12px;
+  }
+}
