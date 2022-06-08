@@ -1,0 +1,30 @@
+.boxes {
+  padding: 48px 0;
+
+  &__title {
+    font-size: 30px;
+    line-height: 36px;
+    margin-bottom: 20px;
+    margin-left: 12px;
+  }
+
+  &__inner {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    width: 200px;
+    height: 200px;
+    margin: 12px;
+    cursor: pointer;
+
+    &--teal {
+      background-color: teal;
+    }
+
+    &--tomato {
+      background-color: tomato;
+    }
+  }
+}
