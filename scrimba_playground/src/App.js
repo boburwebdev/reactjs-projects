@@ -1,11 +1,11 @@
-import FormElements from './FormElements/FormElements';
+import FormAuth from './FormAuth/FormAuth';
 
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <FormElements />
+      <FormAuth />
     </div>
   );
 }

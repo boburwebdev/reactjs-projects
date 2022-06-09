@@ -1,0 +1,62 @@
+.auth {
+  padding: 60px 0;
+
+  &-form {
+    max-width: 600px;
+    margin: 0 auto;
+
+    &__label {
+      max-width: 200px;
+      width: 100%;
+      text-align: right;
+      padding-right: 10px;
+      cursor: pointer;
+    }
+
+    &__input {
+      flex: 1;
+      font-family: inherit;
+      font-size: 16px;
+      padding: 8px 12px;
+      border: 1px solid #b6b6b6;
+      border-radius: 4px;
+
+      &::placeholder {
+        color: #757575;
+      }
+
+      &[type="checkbox"] {
+        flex: unset;
+      }
+    }
+
+    &__button {
+      font-family: inherit;
+      font-size: 16px;
+      padding: 8px 16px;
+      border: 1px solid #b6b6b6;
+      border-radius: 4px;
+      cursor: pointer;
+      display: block;
+      margin-top: 30px;
+      margin-left: auto;
+    }
+  }
+
+  .form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+
+    &--checkbox {
+      margin-top: 16px;
+      margin-left: 200px;
+
+      .auth-form__label {
+        max-width: 100%;
+        text-align-last: left;
+        padding-left: 10px;
+      }
+    }
+  }
+}
