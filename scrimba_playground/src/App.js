@@ -1,11 +1,11 @@
-import Boxes from './Boxes/Boxes';
+import FormElements from './FormElements/FormElements';
 
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <Boxes />
+      <FormElements />
     </div>
   );
 }
