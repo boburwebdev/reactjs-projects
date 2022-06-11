@@ -1,11 +1,11 @@
-import FormAuth from './FormAuth/FormAuth';
+import MemeGenerator from './MemeGenerator/MemeGenerator';
 
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <FormAuth />
+      <MemeGenerator />
     </div>
   );
 }
