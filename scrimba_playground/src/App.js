@@ -1,11 +1,11 @@
-import MemeGenerator from './MemeGenerator/MemeGenerator';
+import NotesApp from './NotesApp/NotesApp';
 
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <MemeGenerator />
+      <NotesApp />
     </div>
   );
 }
