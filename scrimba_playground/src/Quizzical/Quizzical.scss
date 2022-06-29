@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=Karla:wght@700&display=swap');
+
+.quizzical {
+  color: #293264;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 19px;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  padding: 60px 0;
+
+  &::before,
+  &::after {
+    content: '';
+    background-repeat: no-repeat;
+    display: block;
+    position: absolute;
+    width: 300px;
+  }
+
+  &::after {
+    background-image: url(./img/blob__top.svg);
+    height: 290px;
+    top: -120px;
+    right: -100px;
+  }
+
+  &::before {
+    background-image: url(./img/blob__bottom.svg);
+    height: 235px;
+    bottom: -80px;
+    left: -100px;
+  }
+
+  &__start-game {
+    min-height: 100vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .quizzical__text {
+      max-width: 360px;
+      margin-bottom: 40px;
+      font-size: 17px;
+      line-height: 24px;
+    }
+  }
+
+  &__title {
+    font-family: 'Karla', sans-serif;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 40px;
+    margin-bottom: 10px;
+  }
+
+  .btn {
+    background-color: #4D5B9E;
+    color: #FFF;
+    font-family: inherit;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+
+    &__start-game {
+      padding: 16px 48px;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 21px;
+    }
+
+    &__submit,
+    &__reset {
+      font-size: 16px;
+      padding: 12px 36px;
+    }
+  }
+
+  &__question {
+    padding: 30px 0;
+    border-bottom: 1px solid #DBDEF0;
+
+    &-title {
+      font-family: "Karla", sans-serif;
+      font-size: 20px;
+      line-height: 28px;
+      margin-bottom: 12px;
+    }
+
+    &-answers {
+      display: flex;
+    }
+  }
+
+  &__answer {
+    padding: 6px 16px;
+    border: 1px solid #4D5B9E;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 20px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &--chosen {
+      background-color: #D6DBF5;
+      border-color: #D6DBF5;
+    }
+
+    &--correct {
+      background-color: #94D7A2;
+      border-color: #94D7A2;
+    }
+
+    &--wrong {
+      background-color: rgba(#F8BCBC, .5);
+      color: rgba(#293264, .5);
+      border-color: rgba(#F8BCBC, .5);
+    }
+  }
+
+  &__questions-list__result {
+    padding: 30px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-text {
+      font-weight: 700;
+      margin-right: 14px;
+    }
+  }
+}
